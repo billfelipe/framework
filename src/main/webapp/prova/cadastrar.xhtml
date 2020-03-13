@@ -9,46 +9,52 @@
 		<h:form>
 			<p:messages autoUpdate="true" showDetail="true" id="home"
 				closable="true" />
-			<div class="ui-g">
-				<div class="ui-g-3"></div>
-				<div class="ui-g-6">
+			<p:fieldset legend="Cadastro de provas"
+				style="margin-left: 10%; margin-right: 10%; margin-top: 2%">
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="selectOrgao" value="Orgão:" />
 					<p:selectOneMenu id="selectOrgao" value="#{prova.orgao}"
-						converter="baseEntityConverter">
+						converter="baseEntityConverter" style="width: 100%">
 						<f:selectItems value="#{orgaos}" var="_orgao"
 							itemValue="#{_orgao}" itemLabel="#{_orgao.nome}" />
 					</p:selectOneMenu>
-					<br />
+					<p:message for="selectOrgao" />
+					<p:outputLabel for="selectCargo" value="Cargo:" />
 					<p:selectOneMenu id="selectCargo" value="#{prova.cargo}"
-						converter="baseEntityConverter">
+						converter="baseEntityConverter" style="width: 100%">
 						<f:selectItems value="#{cargos}" var="_cargo"
 							itemValue="#{_cargo}" itemLabel="#{_cargo.nome}" />
 					</p:selectOneMenu>
-					<br />
+					<p:message for="selectCargo" />
+					<p:outputLabel for="selectBanca" value="Banca:" />
 					<p:selectOneMenu id="selectBanca" value="#{prova.banca}"
-						converter="baseEntityConverter">
+						converter="baseEntityConverter" style="width: 100%">
 						<f:selectItems value="#{bancas}" var="_banca"
 							itemValue="#{_banca}" itemLabel="#{_banca.nome}" />
 					</p:selectOneMenu>
-					<br />
+					<p:message for="selectBanca" />
+					<p:outputLabel for="selectDocumento" value="Documento:" />
 					<p:selectOneMenu id="selectDocumento" value="#{prova.documento}"
-						converter="baseEntityConverter">
-						<f:selectItems value="#{documentos}" var="_documento"
+						converter="baseEntityConverter" style="width: 100%">
+						<f:selectItems value="#{documentosNaoCadastrados}" var="_documento"
 							itemValue="#{_documento}" itemLabel="#{_documento.nome}" />
 					</p:selectOneMenu>
-					<br />
-					<p:selectOneMenu id="selectAno" value="#{prova.ano}">
-						<f:selectItems value="#{anos}" var="_ano"
-							itemValue="#{_ano}" itemLabel="#{_ano}" />
+					<p:message for="selectDocumento" />
+					<p:outputLabel for="selectAno" value="Ano:" />
+					<p:selectOneMenu id="selectAno" value="#{prova.ano}"
+						style="width: 100%">
+						<f:selectItems value="#{anos}" var="_ano" itemValue="#{_ano}"
+							itemLabel="#{_ano}" />
 					</p:selectOneMenu>
-					<br />
-					<p:commandButton value="Submit" ajax="false"
-						actionListener="#{cadastroProvaView.cadastrar()}" />
-				</div>
-				<div class="ui-g-3"></div>
-			</div>
+					<p:message for="selectAno" />
+					<f:facet name="footer">
+						<p:commandButton value="Enviar" ajax="true" update="@form"
+							actionListener="#{cadastroProvaView.cadastrar()}"
+							disabled="#{documentos.size() == 0}" />
 
-
-
+					</f:facet>
+				</h:panelGrid>
+			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

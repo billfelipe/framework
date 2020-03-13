@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.billfelipe.glasgow.framework.BaseEntity;
 
@@ -24,17 +25,21 @@ public class Prova extends BaseEntity {
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CD_ORGAO")
+	@NotNull(message = "O Órgão não pode ser nulo")
 	private Orgao orgao;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CD_BANCA")
+	@NotNull(message = "A Banca não pode ser nulo")
 	private Banca banca;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CD_CARGO")
+	@NotNull(message = "O Cargo não pode ser nulo")
 	private Cargo cargo;
 
 	@Column(name = "NR_ANO")
+	@NotNull(message = "O Ano não pode ser nulo")
 	private Integer ano;
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "prova", cascade = CascadeType.ALL)

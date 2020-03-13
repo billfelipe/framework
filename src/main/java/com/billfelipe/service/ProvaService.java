@@ -9,6 +9,8 @@ public class ProvaService extends Service<Prova> {
 
 	public void cadastrar(final Prova prova) {
 		dao.merge(prova);
+		event.fire(prova);
+
 	}
 
 }

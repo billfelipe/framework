@@ -16,6 +16,7 @@ abstract class Service<T extends BaseEntity> {
 	@Inject
 	protected Logger log;
 
+	@Inject
 	protected Event<T> event;
 
 }
