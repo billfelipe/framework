@@ -1,2 +1,11 @@
--- You can use this file to load seed data into the database using SQL statements
--- insert into Member (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212') 
+--TB_ORGAO
+insert into tb_orgao (id_orgao , ds_nome) values (0 , 'TRT9');
+insert into tb_orgao (id_orgao , ds_nome) values (1 , 'TJ_PR');
+--TB_BANCA
+insert into tb_banca (id_banca , ds_nome) values (0 , 'CESPE');
+insert into tb_banca (id_banca , ds_nome) values (1 , 'FGV');
+--TB_CARGO
+insert into tb_cargo (id_cargo , ds_nome) values (0 , 'ANALISTA JUDICIARIO');
+insert into tb_cargo (id_cargo , ds_nome) values (1 , 'TECNICO JUDICIARIO');
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:messages autoUpdate="true" showDetail="true" id="home" />
+			<div class="ui-g">
+				<div class="ui-g-3"></div>
+				<div class="ui-g-3">
+					<p:fileUpload value="#{uploadDocumentoView.file}" mode="advanced"
+						auto="true" skinSimple="true"
+						fileUploadListener="#{uploadDocumentoView.importar}" />
+
+
+				</div>
+				<div class="ui-g-3"></div>
+				<div class="ui-g-3"></div>
+			</div>
+
+
+			<p:dataTable var="orgao" value="">
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

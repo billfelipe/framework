@@ -1,4 +1,4 @@
-package com.billfelipe.model.converter;
+package com.billfelipe.glasgow.framework;
 
 import java.util.Map;
 
@@ -6,8 +6,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-
-import com.billfelipe.model.entity.BaseEntity;
 
 @FacesConverter(value = "baseEntityConverter", forClass = BaseEntity.class)
 public class BaseEntityConverter implements Converter {

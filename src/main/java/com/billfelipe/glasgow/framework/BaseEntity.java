@@ -1,4 +1,4 @@
-package com.billfelipe.model.entity;
+package com.billfelipe.glasgow.framework;
 
 import java.io.Serializable;
 

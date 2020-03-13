@@ -1,4 +1,4 @@
-package com.billfelipe.service.resource;
+package com.billfelipe.glasgow.framework;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

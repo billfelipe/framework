@@ -1,4 +1,4 @@
-package com.billfelipe.model.enums;
+package com.billfelipe.glasgow.model;
 
 public enum CategoryEnum {
 

@@ -1,9 +1,7 @@
-package com.billfelipe.dao;
+package com.billfelipe.glasgow.framework;
 
 import java.util.Collection;
 import java.util.Map;
-
-import com.billfelipe.model.entity.BaseEntity;
 
 interface IGenericDAO<T extends BaseEntity> {
 

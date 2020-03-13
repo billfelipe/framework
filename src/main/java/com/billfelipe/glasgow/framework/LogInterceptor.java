@@ -1,4 +1,4 @@
-package com.billfelipe.util;
+package com.billfelipe.glasgow.framework;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -35,5 +35,4 @@ public class LogInterceptor implements Serializable {
 		log.info(info.toString());
 		return ic.proceed();
 	}
-
 }

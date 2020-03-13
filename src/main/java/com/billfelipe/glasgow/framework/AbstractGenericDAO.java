@@ -1,4 +1,4 @@
-package com.billfelipe.dao;
+package com.billfelipe.glasgow.framework;
 
 import java.util.Collection;
 import java.util.Map;
@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import com.billfelipe.model.entity.BaseEntity;
 
 abstract class AbstractGenericDAO<T extends BaseEntity> implements IGenericDAO<T> {
 

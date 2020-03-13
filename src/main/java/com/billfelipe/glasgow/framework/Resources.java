@@ -1,4 +1,4 @@
-package com.billfelipe.util;
+package com.billfelipe.glasgow.framework;
 
 import java.util.logging.Logger;
 
