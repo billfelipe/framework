@@ -13,7 +13,7 @@ import com.billfelipe.glasgow.model.Prova;
 import com.billfelipe.glasgow.model.Questao;
 import com.billfelipe.glasgow.model.TipoEstadoProva;
 import com.billfelipe.service.PDFService;
-import com.billfelipe.service.ParsingServico;
+import com.billfelipe.service.ParsingService;
 import com.billfelipe.service.ProvaService;
 
 @Startup
@@ -27,21 +27,25 @@ public class ParsingSchedule {
 	private PDFService pdfService;
 
 	@Inject
-	private ParsingServico parsingServico;
+	private ParsingService parsingServico;
 
-	@Schedule(minute = "*", hour = "*")
-	public void run() throws IOException {
-		Collection<Prova> provasNaoConferidas = provaService.getProvasCadastradas();
-		for (Prova prova : provasNaoConferidas) {
-			String conteudoDoArquivo = pdfService.extrairConteudoDoArquivo(prova);
-			List<Questao> questoes = parsingServico.separarQuestoes(conteudoDoArquivo,
-					prova.getPadraoCabecalhoQuestao());
-			for (Questao questao : questoes) {
-				prova.addQuestao(questao);
-			}
-			prova.setTipoEstadoProva(TipoEstadoProva.PROCESSADA);
-			provaService.cadastrar(prova);
-		}
-	}
+//	@Schedule(minute = "*", hour = "*")
+//	public void run() throws IOException {
+//		Collection<Prova> provasNaoConferidas = provaService.getProvasCadastradas();
+//		for (Prova prova : provasNaoConferidas) {
+//			String conteudoDoArquivo = pdfService.extrairConteudoDoArquivo(prova);
+//			List<Questao> questoes = parsingServico.separarQuestoes(conteudoDoArquivo,
+//					prova.getPadraoCabecalhoQuestao());
+//			System.out.println("*****************" + prova.getPadraoCabecalhoAlternativa());
+//			for (Questao questao : questoes) {
+//				parsingServico.separarAlternativas(questao, prova.getPadraoCabecalhoAlternativa());
+//			}
+//			
+//			prova.addQuestoes(questoes);
+//			
+//			prova.setTipoEstadoProva(TipoEstadoProva.PROCESSADA);
+//			provaService.cadastrar(prova);
+//		}
+//	}
 
 }

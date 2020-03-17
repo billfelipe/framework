@@ -1,6 +1,7 @@
 package com.billfelipe.glasgow.model;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,17 +20,9 @@ import javax.validation.constraints.NotNull;
 
 import com.billfelipe.glasgow.framework.BaseEntity;
 
-@NamedQueries({
-		@NamedQuery(name = Prova.GET_PROVAS_PROCESSADAS, query = "select p from Prova p left join fetch p.cargo left join fetch p.banca left join fetch p.orgao where p.tipoEstadoProva = com.billfelipe.glasgow.model.TipoEstadoProva.PROCESSADA"),
-		@NamedQuery(name = Prova.GET_PROVAS_CADASTRADAS, query = "select p from Prova p left join fetch p.documento where p.tipoEstadoProva = com.billfelipe.glasgow.model.TipoEstadoProva.CADASTRADA") })
-
 @Entity
 @Table(name = "TB_PROVA")
 public class Prova extends BaseEntity {
-
-	public static final String GET_PROVAS_CADASTRADAS = "Prova.GET_PROVAS_CADASTRADA";
-
-	public static final String GET_PROVAS_PROCESSADAS = "Prova.GET_PROVAS_PROCESSADAS";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,24 +49,27 @@ public class Prova extends BaseEntity {
 	private Integer ano;
 
 	@Column(name = "DS_PADRAO_CABECALHO_QUESTAO")
-	private String padraoCabecalhoQuestao;
+	private String padraoCabecalhoQuestao = "\\n\\d{2,3}[.]\\s\\D";
+
+	@Column(name = "DS_PADRAO_CABECALHO_ALTERNATIVA")
+	private String padraoCabecalhoAlternativa = "\\n[(][A,B,C,D,E][)]\\s\\D";
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "prova", cascade = CascadeType.ALL)
 	@JoinColumn(name = "CD_DOCUMENTO")
 	private Documento documento;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "prova", orphanRemoval = true, cascade = CascadeType.ALL)
-	private Collection<Questao> questoes;
+	private List<Questao> questoes = new ArrayList<Questao>();
 
 	@Column(name = "TP_PROCESSADA")
 	@Enumerated(EnumType.STRING)
 	private TipoEstadoProva tipoEstadoProva;
 
-	public Collection<Questao> getQuestoes() {
+	public List<Questao> getQuestoes() {
 		return questoes;
 	}
 
-	public void setQuestoes(Collection<Questao> questoes) {
+	public void setQuestoes(List<Questao> questoes) {
 		this.questoes = questoes;
 	}
 
@@ -88,7 +82,7 @@ public class Prova extends BaseEntity {
 		questao.setProva(this);
 	}
 
-	public void remove(Questao questao) {
+	public void removeQuestao(Questao questao) {
 		this.questoes.remove(questao);
 		questao.setProva(null);
 	}
@@ -158,6 +152,14 @@ public class Prova extends BaseEntity {
 
 	public void setPadraoCabecalhoQuestao(String padraoCabecalhoQuestao) {
 		this.padraoCabecalhoQuestao = padraoCabecalhoQuestao;
+	}
+
+	public String getPadraoCabecalhoAlternativa() {
+		return padraoCabecalhoAlternativa;
+	}
+
+	public void setPadraoCabecalhoAlternativa(String padraoCabecalhoAlternativa) {
+		this.padraoCabecalhoAlternativa = padraoCabecalhoAlternativa;
 	}
 
 }

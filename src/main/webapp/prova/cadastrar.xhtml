@@ -36,7 +36,7 @@
 					<p:outputLabel for="selectDocumento" value="Documento:" />
 					<p:selectOneMenu id="selectDocumento" value="#{prova.documento}"
 						converter="baseEntityConverter" style="width: 100%">
-						<f:selectItems value="#{documentosNaoCadastrados}"
+						<f:selectItems value="#{documentosSemProvaAssociada}"
 							var="_documento" itemValue="#{_documento}"
 							itemLabel="#{_documento.nome}" />
 					</p:selectOneMenu>
@@ -48,11 +48,17 @@
 							itemLabel="#{_ano}" />
 					</p:selectOneMenu>
 					<p:message for="selectAno" />
-					<p:outputLabel for="inputPadraoCabecalho"
-						value="Padrão do cabeçalho:" />
-					<p:inputText id="inputPadraoCabecalho"
+					<p:outputLabel for="inputPadraoCabecalhoQuestao"
+						value="Padrão do cabeçalho das questões:" />
+					<p:inputText id="inputPadraoCabecalhoQuestao"
 						value="#{prova.padraoCabecalhoQuestao}" />
-					<p:message for="inputPadraoCabecalho" />
+					<p:message for="inputPadraoCabecalhoQuestao" />
+
+					<p:outputLabel for="inputPadraoCabecalhoAlternativa"
+						value="Padrão do cabeçalho das alternativas:" />
+					<p:inputText id="inputPadraoCabecalhoAlternativa"
+						value="#{prova.padraoCabecalhoAlternativa}" />
+					<p:message for="inputPadraoCabecalhoAlternativa" />
 					<f:facet name="footer">
 						<p:commandButton value="Enviar" ajax="true" update="@form"
 							actionListener="#{cadastroProvaView.cadastrar()}"

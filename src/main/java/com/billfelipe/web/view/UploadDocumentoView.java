@@ -2,7 +2,7 @@ package com.billfelipe.web.view;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,7 +13,7 @@ import com.billfelipe.glasgow.framework.View;
 import com.billfelipe.glasgow.model.Documento;
 import com.billfelipe.service.DocumentoService;
 
-@SessionScoped
+@ApplicationScoped
 @Named
 public class UploadDocumentoView extends View implements Serializable {
 
@@ -32,6 +32,7 @@ public class UploadDocumentoView extends View implements Serializable {
 
 	public void importar(FileUploadEvent event) {
 		if (event == null || event.getFile() == null) {
+			pushMessage("Nenhum arquivo foi selecionado");
 			return;
 		}
 		Documento documento = new Documento();

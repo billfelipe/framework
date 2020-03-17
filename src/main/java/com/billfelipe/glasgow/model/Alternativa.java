@@ -18,9 +18,10 @@ public class Alternativa extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_ALTERNATIVA")
 	private Long id;
 
-	@Column(name = "DS_CONTEUDO")
+	@Column(name = "DS_CONTEUDO" , length = 5000)
 	private String conteudo;
 
 	@ManyToOne(fetch = FetchType.LAZY)

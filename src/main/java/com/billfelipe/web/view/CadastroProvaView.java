@@ -1,5 +1,6 @@
 package com.billfelipe.web.view;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +13,6 @@ import javax.inject.Named;
 
 import com.billfelipe.glasgow.framework.View;
 import com.billfelipe.glasgow.model.Prova;
-import com.billfelipe.glasgow.model.TipoEstadoProva;
 import com.billfelipe.service.ProvaService;
 
 @Model
@@ -46,10 +46,13 @@ public class CadastroProvaView extends View {
 	}
 
 	public void cadastrar() {
-		prova.setTipoEstadoProva(TipoEstadoProva.CADASTRADA);
-		provaService.cadastrar(prova);
-		init();
-		pushMessage("Prova cadastrada com sucesso");
+		try {
+			provaService.cadastrar(prova);
+			init();
+			pushMessage("Prova cadastrada com sucesso");
+		} catch (IOException e) {
+			pushMessage(e.getMessage());
+		}
 	}
 
 }

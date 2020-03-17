@@ -18,12 +18,12 @@ import javax.persistence.TemporalType;
 
 import com.billfelipe.glasgow.framework.BaseEntity;
 
-@NamedQuery(name = Documento.GET_ALL_SEM_CADASTRO, query = "select d from Documento d where d.prova is null")
+@NamedQuery(name = Documento.GET_DOCUMENTOS_SEM_PROVA_ASSOCIADA, query = "select d from Documento d where d.prova is null")
 @Entity
 @Table(name = "TB_DOCUMENTO")
 public class Documento extends BaseEntity {
 
-	public static final String GET_ALL_SEM_CADASTRO = "Documento.GET_ALL_SEM_CADASTRO";
+	public static final String GET_DOCUMENTOS_SEM_PROVA_ASSOCIADA = "Documento.GET_ALL_SEM_CADASTRO";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

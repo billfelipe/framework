@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.billfelipe.glasgow.model.Alternativa;
 import com.billfelipe.glasgow.model.Questao;
 
-public class ParsingServico {
+public class ParsingService {
 
 	List<Integer> encontrarPosicoesDosCabecalhos(final String conteudo, final String padraoDoCabecalho) {
 		Pattern pattern = Pattern.compile(padraoDoCabecalho);
@@ -38,24 +39,26 @@ public class ParsingServico {
 		return questoes;
 	}
 
-	public void separarAlternativas(final Questao questao, final String padraoDoCabecalho) {
-//		List<Integer> posicoesDosCabecalhos = encontrarPosicoesDosCabecalhos(questao.getConteudo(), padraoDoCabecalho);
-//		List<String> alternativas = new ArrayList<String>();
-//
-//		String enunciado = dividirConteudo(questao.getConteudo(), 0, posicoesDosCabecalhos.get(0));
-//		questao.setEnunciado(enunciado);
-//
-//		for (int i = 0; i < posicoesDosCabecalhos.size() - 1; i++) {
-//			String conteudoDividido = dividirConteudo(questao.getConteudo(), posicoesDosCabecalhos.get(i),
-//					posicoesDosCabecalhos.get(i + 1));
-//			alternativas.add(conteudoDividido);
-//		}
-//
-//		String ultimaAlternativa = dividirConteudo(questao.getConteudo(),
-//				posicoesDosCabecalhos.get(posicoesDosCabecalhos.size() - 1));
-//		alternativas.add(ultimaAlternativa);
-//
-//		questao.setAlternativas(alternativas);
+	public void separarAlternativas(Questao questao, final String padraoDoCabecalho) {
+		List<Integer> posicoesDosCabecalhos = encontrarPosicoesDosCabecalhos(questao.getConteudo(), padraoDoCabecalho);
+		questao.setAlternativas(new ArrayList<Alternativa>());
+
+		String enunciado = dividirConteudo(questao.getConteudo(), 0, posicoesDosCabecalhos.get(0));
+		questao.setEnunciado(enunciado);
+		
+		for (int i = 0; i < posicoesDosCabecalhos.size() - 1; i++) {
+			String conteudoDividido = dividirConteudo(questao.getConteudo(), posicoesDosCabecalhos.get(i),
+					posicoesDosCabecalhos.get(i + 1));
+			Alternativa alternativa = new Alternativa();
+			alternativa.setConteudo(conteudoDividido);
+			questao.addAlternativa(alternativa);
+		}
+
+		String conteudoUltimaAlternativa = dividirConteudo(questao.getConteudo(),
+				posicoesDosCabecalhos.get(posicoesDosCabecalhos.size() - 1));
+		Alternativa ultimaAlternativa = new Alternativa();
+		ultimaAlternativa.setConteudo(conteudoUltimaAlternativa);
+		questao.addAlternativa(ultimaAlternativa);
 	}
 
 	public String dividirConteudo(String conteudo, int posiciaoInicial) {

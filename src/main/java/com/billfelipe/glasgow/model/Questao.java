@@ -1,6 +1,6 @@
 package com.billfelipe.glasgow.model;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 import com.billfelipe.glasgow.framework.BaseEntity;
 
-@NamedQuery(name = Questao.FIND_BY_PROVA, query = "select q from Questao q left join fetch Q.alternativas where q.prova = :prova")
+@NamedQuery(name = Questao.FIND_BY_PROVA, query = "select q from Questao q left join fetch q.alternativas")
 @Entity
 @Table(name = "TB_QUESTAO")
 public class Questao extends BaseEntity {
@@ -36,19 +36,29 @@ public class Questao extends BaseEntity {
 	private String enunciado;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "questao", orphanRemoval = true, cascade = CascadeType.ALL)
-	private Collection<Alternativa> alternativas;
+	private List<Alternativa> alternativas;
 
-	public Collection<Alternativa> getAlternativas() {
+	public List<Alternativa> getAlternativas() {
 		return alternativas;
 	}
 
-	public void setAlternativas(Collection<Alternativa> alternativas) {
+	public void setAlternativas(List<Alternativa> alternativas) {
 		this.alternativas = alternativas;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CD_PROVA")
 	private Prova prova;
+
+	public void addAlternativa(Alternativa alternativa) {
+		this.alternativas.add(alternativa);
+		alternativa.setQuestao(this);
+	}
+
+	public void removeAlternativa(Alternativa alternativa) {
+		this.alternativas.remove(alternativa);
+		alternativa.setQuestao(null);
+	}
 
 	public Prova getProva() {
 		return prova;
