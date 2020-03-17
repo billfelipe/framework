@@ -9,13 +9,25 @@
 		<h:form>
 			<p:messages autoUpdate="true" showDetail="true" id="home"
 				closable="true" />
-			<p:fieldset legend="Upload de documentos"
+			<p:fieldset legend="Questões da prova"
 				style="margin-left: 10%; margin-right: 10%; margin-top: 2%">
 				<h:panelGrid columns="3" cellpadding="5">
-					<p:dataTable>
-					
+					<p:dataTable var="_questao" value="#{questoes}">
+						<p:column headerText="Enunciado">
+							<p:outputLabel value="#{_questao.enunciado}" />
+						</p:column>
+						<p:column headerText="Alternativas">
+							<p:dataList value="#{_questao.alternativas}" var="_alternativa"
+								type="ordered">
+								#{_alternativa.conteudo}				
+
+    </p:dataList>
+						</p:column>
+						<p:column headerText="Conferência">
+							<p:commandButton />
+						</p:column>
 					</p:dataTable>
-					
+
 				</h:panelGrid>
 			</p:fieldset>
 

@@ -36,8 +36,9 @@
 					<p:outputLabel for="selectDocumento" value="Documento:" />
 					<p:selectOneMenu id="selectDocumento" value="#{prova.documento}"
 						converter="baseEntityConverter" style="width: 100%">
-						<f:selectItems value="#{documentosNaoCadastrados}" var="_documento"
-							itemValue="#{_documento}" itemLabel="#{_documento.nome}" />
+						<f:selectItems value="#{documentosNaoCadastrados}"
+							var="_documento" itemValue="#{_documento}"
+							itemLabel="#{_documento.nome}" />
 					</p:selectOneMenu>
 					<p:message for="selectDocumento" />
 					<p:outputLabel for="selectAno" value="Ano:" />
@@ -47,6 +48,11 @@
 							itemLabel="#{_ano}" />
 					</p:selectOneMenu>
 					<p:message for="selectAno" />
+					<p:outputLabel for="inputPadraoCabecalho"
+						value="Padrão do cabeçalho:" />
+					<p:inputText id="inputPadraoCabecalho"
+						value="#{prova.padraoCabecalhoQuestao}" />
+					<p:message for="inputPadraoCabecalho" />
 					<f:facet name="footer">
 						<p:commandButton value="Enviar" ajax="true" update="@form"
 							actionListener="#{cadastroProvaView.cadastrar()}"

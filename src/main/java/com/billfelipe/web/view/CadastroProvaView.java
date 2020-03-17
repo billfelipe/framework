@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import com.billfelipe.glasgow.framework.View;
 import com.billfelipe.glasgow.model.Prova;
+import com.billfelipe.glasgow.model.TipoEstadoProva;
 import com.billfelipe.service.ProvaService;
 
 @Model
@@ -45,6 +46,7 @@ public class CadastroProvaView extends View {
 	}
 
 	public void cadastrar() {
+		prova.setTipoEstadoProva(TipoEstadoProva.CADASTRADA);
 		provaService.cadastrar(prova);
 		init();
 		pushMessage("Prova cadastrada com sucesso");
