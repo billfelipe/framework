@@ -9,29 +9,26 @@
 		<h:form>
 			<p:messages autoUpdate="true" showDetail="true" id="home"
 				closable="true" />
-			<p:fieldset legend="Conferência do parsing"
+			<p:fieldset legend="Questões da prova"
 				style="margin-left: 10%; margin-right: 10%; margin-top: 2%">
 				<h:panelGrid columns="3" cellpadding="5">
-					<p:dataTable var="_prova" value="#{provasProcessadas}">
-						<p:column headerText="ID">
-							<p:outputLabel value="#{_prova.id}" />
+					<p:dataTable var="_questao" value="#{questoes}">
+						<f:facet name="header">
+							<p:commandButton actionListener="#{conferenciaParsingView}"/>
+						</f:facet>
+						<p:column headerText="Enunciado">
+							<p:outputLabel value="#{_questao.enunciado}" />
 						</p:column>
-						<p:column headerText="Cargo">
-							<p:outputLabel value="#{_prova.cargo.nome}" />
-						</p:column>
-						<p:column headerText="Órgão">
-							<p:outputLabel value="#{_prova.orgao.nome}" />
-						</p:column>
-						<p:column headerText="Banca">
-							<p:outputLabel value="#{_prova.banca.nome}" />
-						</p:column>
-						<p:column headerText="Ano">
-							<p:outputLabel value="#{_prova.ano}" />
+						<p:column headerText="Alternativas">
+							<p:dataList value="#{_questao.alternativas}" var="_alternativa"
+								type="ordered">
+								#{_alternativa.conteudo}				
+
+    						</p:dataList>
 						</p:column>
 						<p:column headerText="Conferência">
-							<p:commandLink action="#{conferenciaParsingView.conferirProva(_prova)}" value="Conferir"/>
+							<p:commandButton />
 						</p:column>
-
 					</p:dataTable>
 
 				</h:panelGrid>

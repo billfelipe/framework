@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 import com.billfelipe.glasgow.framework.BaseEntity;
 
-@NamedQuery(name = Questao.FIND_BY_PROVA, query = "select q from Questao q left join fetch q.alternativas")
+@NamedQuery(name = Questao.FIND_BY_PROVA, query = "select q from Questao q left join fetch q.alternativas where q.prova = :prova")
 @Entity
 @Table(name = "TB_QUESTAO")
 public class Questao extends BaseEntity {

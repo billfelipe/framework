@@ -6,13 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,9 +19,12 @@ import javax.validation.constraints.NotNull;
 
 import com.billfelipe.glasgow.framework.BaseEntity;
 
+@NamedQuery(name = Prova.GET_PROVAS_NAO_CONFERIDAS, query = "select p from Prova p  left join fetch p.banca left join fetch p.orgao left join fetch p.cargo where p.isConferida = false")
 @Entity
 @Table(name = "TB_PROVA")
 public class Prova extends BaseEntity {
+
+	public static final String GET_PROVAS_NAO_CONFERIDAS = "Prova.GET_PROVAS_NAO_CONFERIDAS";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,9 +63,8 @@ public class Prova extends BaseEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "prova", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Questao> questoes = new ArrayList<Questao>();
 
-	@Column(name = "TP_PROCESSADA")
-	@Enumerated(EnumType.STRING)
-	private TipoEstadoProva tipoEstadoProva;
+	@Column(name = "TP_CONFERIDA")
+	private boolean isConferida;
 
 	public List<Questao> getQuestoes() {
 		return questoes;
@@ -138,12 +139,12 @@ public class Prova extends BaseEntity {
 		this.id = id;
 	}
 
-	public TipoEstadoProva getTipoEstadoProva() {
-		return tipoEstadoProva;
+	public Boolean getIsConferida() {
+		return isConferida;
 	}
 
-	public void setTipoEstadoProva(TipoEstadoProva tipoEstadoProva) {
-		this.tipoEstadoProva = tipoEstadoProva;
+	public void setIsConferida(Boolean isConferida) {
+		this.isConferida = isConferida;
 	}
 
 	public String getPadraoCabecalhoQuestao() {
