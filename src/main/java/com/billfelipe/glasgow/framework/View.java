@@ -14,6 +14,7 @@ public class View {
 	@Inject
 	private FacesContext facesContext;
 
+
 	protected void pushMessage(final String message) {
 		log.info(message);
 		facesContext.addMessage("home", new FacesMessage(message));

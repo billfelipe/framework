@@ -32,4 +32,14 @@ public class OrgaoService extends Service<Orgao> implements Serializable {
 		return this.orgaos;
 	}
 
+	public void cadastrar(final Orgao orgao) {
+		dao.merge(orgao);
+		event.fire(orgao);
+	}
+
+	public void remover(final Orgao orgao) {
+		dao.remove(orgao);
+		event.fire(orgao);
+	}
+
 }

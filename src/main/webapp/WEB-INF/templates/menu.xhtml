@@ -9,11 +9,17 @@
 <body>
 	<ui:composition>
 		<p:menubar>
-			<p:menuitem value="Documento" url="/documento/cadastrar.xhtml"
-				icon="fa fa-fw fa-file-pdf-o" />
-			<p:menuitem value="Prova" url="/prova/cadastrar.xhtml"
+			<p:submenu label="Configurações" icon="fa fa-gear">
+				<p:menuitem value="Banca" url="/banca/cadastrar.xhtml?faces-redirect=true"
+					icon="fa fa-fw fa-file-pdf-o" />
+				<p:menuitem value="Órgão" url="/orgao/cadastrar.xhtml?faces-redirect=true"
+					icon="fa fa-institution" />
+				<p:menuitem value="Cargo" url="/cargo/cadastrar.xhtml?faces-redirect=true"
+					icon="fa fa-user" />
+			</p:submenu>
+			<p:menuitem value="Prova" url="prova/cadastrar.xhtml"
 				icon="fa fa-fw fa-info-circle" />
-			<p:menuitem value="Parsing" url="/prova/pesquisar.xhtml"
+			<p:menuitem value="Parsing" url="prova/pesquisar.xhtml"
 				icon="fa fa-fw fa-cut" />
 			<f:facet name="options">
 				<p:inputText placeholder="Search" />

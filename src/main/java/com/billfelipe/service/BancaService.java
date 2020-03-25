@@ -23,13 +23,23 @@ public class BancaService extends Service<Banca> implements Serializable {
 		this.bancas = null;
 	}
 
-	@Named(value = "bancas")
 	@Produces
-	public Collection<Banca> getAll() {
+	@Named("bancas")
+	public Collection<Banca> getBancas() {
 		if (this.bancas == null) {
 			this.bancas = (List<Banca>) dao.getResultList(Banca.class, Banca.GET_ALL);
 		}
 		return this.bancas;
+	}
+
+	public void cadastrar(final Banca banca) {
+		dao.merge(banca);
+		event.fire(banca);
+	}
+
+	public void remover(Banca banca) {
+		dao.remove(banca);
+		event.fire(banca);
 	}
 
 }
