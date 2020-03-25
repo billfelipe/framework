@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:messages autoUpdate="true" showDetail="true" id="home"
+				closable="true" />
+			<p:fieldset legend="Cadastro de bancas"
+				style="margin-left: 10%; margin-right: 10%; margin-top: 2%">
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="inputNomeBanca" value="Nome da banca" />
+					<p:inputText id="inputNomeBanca" value="#{banca.nome}" />
+					<p:message for="inputNomeBanca" />
+					
+					
+					<f:facet name="footer">
+						<p:commandButton value="Enviar" ajax="true" update="@form"
+							actionListener="#{cadastroBancaView.cadastrar()}" />
+
+					</f:facet>
+				</h:panelGrid>
+				
+				
+			</p:fieldset>
+			<p:fieldset legend="Cadastro de bancas"
+				style="margin-left: 10%; margin-right: 10%; margin-top: 2%">
+				<p:dataTable value="#{bancas}" var="_banca" id="tableBancasCadastradas">
+					<p:column headerText="Nome da banca">
+						#{_banca.nome}
+					</p:column>
+					<p:column headerText="Remover">
+						<p:commandButton value="Remover" actionListener="#{cadastroBancaView.remover(_banca)}" ajax="true" update="tableBancasCadastradas"/>
+					</p:column>
+				</p:dataTable>
+
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

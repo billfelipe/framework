@@ -2,9 +2,8 @@ package com.billfelipe.web.view;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -13,8 +12,7 @@ import com.billfelipe.glasgow.framework.View;
 import com.billfelipe.glasgow.model.Documento;
 import com.billfelipe.service.DocumentoService;
 
-@ApplicationScoped
-@Named
+@Model
 public class UploadDocumentoView extends View implements Serializable {
 
 	private UploadedFile file;

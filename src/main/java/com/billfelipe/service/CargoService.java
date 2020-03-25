@@ -32,4 +32,14 @@ public class CargoService extends Service<Cargo> implements Serializable {
 		return this.cargos;
 	}
 
+	public void cadastrar(final Cargo cargo) {
+		dao.merge(cargo);
+		event.fire(cargo);
+	}
+
+	public void remover(Cargo cargo) {
+		dao.remove(cargo);
+		event.fire(cargo);
+	}
+
 }

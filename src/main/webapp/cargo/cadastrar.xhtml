@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:messages autoUpdate="true" showDetail="true" id="home"
+				closable="true" />
+			<p:fieldset legend="Cadastro de cargos"
+				style="margin-left: 10%; margin-right: 10%; margin-top: 2%">
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="inputNomeCargo" value="Nome do cargo" />
+					<p:inputText id="inputNomeCargo" value="#{cargo.nome}" />
+					<p:message for="inputNomeCargo" />
+					
+					
+					<f:facet name="footer">
+						<p:commandButton value="Enviar" ajax="true" update="@form"
+							actionListener="#{cadastroCargoView.cadastrar()}" />
+
+					</f:facet>
+				</h:panelGrid>
+				
+				
+			</p:fieldset>
+			<p:fieldset legend="Cadastro de cargos"
+				style="margin-left: 10%; margin-right: 10%; margin-top: 2%">
+				<p:dataTable value="#{cargos}" var="_cargo" id="tableCargosCadastradas">
+					<p:column headerText="Nome do cargo">
+						#{_cargo.nome}
+					</p:column>
+					<p:column headerText="Remover">
+						<p:commandButton value="Remover" actionListener="#{cadastroCargoView.remover(_cargo)}" ajax="true" update="tableCargosCadastradas"/>
+					</p:column>
+				</p:dataTable>
+
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
