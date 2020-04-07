@@ -3,7 +3,7 @@
 	version="3.0">
 	<interceptors>
 		<interceptor>
-			<interceptor-class>com.billfelipe.glasgow.framework.LogInterceptor</interceptor-class>
+			<interceptor-class>com.billfelipe.framework.log.LogInterceptor</interceptor-class>
 			<around-invoke>
 				<method-name>interceptor</method-name>
 			</around-invoke>
@@ -12,7 +12,7 @@
 	<assembly-descriptor>
 		<interceptor-binding>
 			<ejb-name>*</ejb-name>
-			<interceptor-class>com.billfelipe.glasgow.framework.LogInterceptor</interceptor-class>
+			<interceptor-class>com.billfelipe.framework.log.LogInterceptor</interceptor-class>
 		</interceptor-binding>
 	</assembly-descriptor>
 
